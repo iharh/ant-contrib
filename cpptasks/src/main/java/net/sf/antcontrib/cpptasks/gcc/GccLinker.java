@@ -21,6 +21,9 @@ import java.util.Vector;
 import net.sf.antcontrib.cpptasks.CUtil;
 import net.sf.antcontrib.cpptasks.compiler.LinkType;
 import net.sf.antcontrib.cpptasks.compiler.Linker;
+
+import static net.sf.antcontrib.cpptasks.clb.ClbNames.*;
+
 /**
  * Adapter for the GCC linker
  * 
@@ -34,14 +37,14 @@ public class GccLinker extends AbstractLdLinker {
             "-dynamiclib", "-nostartfiles", "-nostdlib", "-prebind", "-s",
             "-static", "-shared", "-symbolic", "-Xlinker", "-arch",
             "--export-all-symbols", "-static-libgcc",};
-    private static final GccLinker dllLinker = new GccLinker("gcc", objFiles,
-            discardFiles, "lib", ".so", false, new GccLinker("gcc", objFiles,
+    private static final GccLinker dllLinker = new GccLinker(CLB_GCC, objFiles,
+            discardFiles, "lib", ".so", false, new GccLinker(CLB_GCC, objFiles,
                     discardFiles, "lib", ".so", true, null));
-    private static final GccLinker instance = new GccLinker("gcc", objFiles,
+    private static final GccLinker instance = new GccLinker(CLB_GCC, objFiles,
             discardFiles, "", "", false, null);
-    private static final GccLinker machBundleLinker = new GccLinker("gcc",
+    private static final GccLinker machBundleLinker = new GccLinker(CLB_GCC,
             objFiles, discardFiles, "lib", ".bundle", false, null);
-    private static final GccLinker machDllLinker = new GccLinker("gcc",
+    private static final GccLinker machDllLinker = new GccLinker(CLB_GCC,
             objFiles, discardFiles, "lib", ".dylib", false, null);
     public static GccLinker getInstance() {
         return instance;

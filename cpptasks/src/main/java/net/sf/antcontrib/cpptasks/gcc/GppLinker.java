@@ -24,6 +24,9 @@ import net.sf.antcontrib.cpptasks.compiler.CaptureStreamHandler;
 import net.sf.antcontrib.cpptasks.compiler.LinkType;
 import net.sf.antcontrib.cpptasks.compiler.Linker;
 import net.sf.antcontrib.cpptasks.types.LibrarySet;
+
+import static net.sf.antcontrib.cpptasks.clb.ClbNames.*;
+
 /**
  * Adapter for the g++ variant of the GCC linker
  * 
@@ -33,8 +36,8 @@ public class GppLinker extends AbstractLdLinker {
     protected static final String[] discardFiles = new String[0];
     protected static final String[] objFiles = new String[]{".o", ".a", ".lib",
             ".dll", ".so", ".sl"};
-    private static final GppLinker dllLinker = new GppLinker("gcc", objFiles,
-            discardFiles, "lib", ".so", false, new GppLinker("gcc", objFiles,
+    private static final GppLinker dllLinker = new GppLinker(CLB_GCC, objFiles,
+            discardFiles, "lib", ".so", false, new GppLinker(CLB_GCC, objFiles,
                     discardFiles, "lib", ".so", true, null));
     private final static String libPrefix = "libraries: =";
     protected static final String[] libtoolObjFiles = new String[]{".fo", ".a",
@@ -42,11 +45,11 @@ public class GppLinker extends AbstractLdLinker {
     private static String[] linkerOptions = new String[]{"-bundle", "-dylib",
             "-dynamic", "-dynamiclib", "-nostartfiles", "-nostdlib",
             "-prebind", "-s", "-static", "-shared", "-symbolic", "-Xlinker"};
-    private static final GppLinker instance = new GppLinker("gcc", objFiles,
+    private static final GppLinker instance = new GppLinker(CLB_GCC, objFiles,
             discardFiles, "", "", false, null);
-    private static final GppLinker machDllLinker = new GppLinker("gcc",
+    private static final GppLinker machDllLinker = new GppLinker(CLB_GCC,
             objFiles, discardFiles, "lib", ".dylib", false, null);
-    private static final GppLinker machPluginLinker = new GppLinker("gcc",
+    private static final GppLinker machPluginLinker = new GppLinker(CLB_GCC,
             objFiles, discardFiles, "lib", ".bundle", false, null);
     public static GppLinker getInstance() {
         return instance;

@@ -30,6 +30,8 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.types.Environment;
 import net.sf.antcontrib.cpptasks.OptimizationEnum;
 
+import static net.sf.antcontrib.cpptasks.clb.ClbNames.*;
+
 /**
  * Adapter for the GCC C/C++ compiler
  *
@@ -59,13 +61,13 @@ public final class GccCCompiler extends GccCompatibleCCompiler {
             sourceExtensions, headerExtensions, false,
             new GccCCompiler("g77", sourceExtensions, headerExtensions, true,
                     null, false, null), false, null);
-    private static final GccCCompiler gppInstance = new GccCCompiler("g++",
+    private static final GccCCompiler gppInstance = new GccCCompiler(CLB_GPP,
             sourceExtensions, headerExtensions, false,
-            new GccCCompiler("g++", sourceExtensions, headerExtensions, true,
+            new GccCCompiler(CLB_GPP, sourceExtensions, headerExtensions, true,
                     null, false, null), false, null);
-    private static final GccCCompiler instance = new GccCCompiler("gcc",
+    private static final GccCCompiler instance = new GccCCompiler(CLB_GCC,
             sourceExtensions, headerExtensions, false,
-            new GccCCompiler("gcc", sourceExtensions, headerExtensions, true,
+            new GccCCompiler(CLB_GCC, sourceExtensions, headerExtensions, true,
                     null, false, null), false, null);
     /**
      * Gets c++ adapter

@@ -23,6 +23,9 @@ import java.util.Vector;
 
 import net.sf.antcontrib.cpptasks.CUtil;
 import net.sf.antcontrib.cpptasks.compiler.CaptureStreamHandler;
+
+import static net.sf.antcontrib.cpptasks.clb.ClbNames.*;
+
 /**
  * A add-in class for Gcc processors
  * 
@@ -87,7 +90,7 @@ public class GccProcessor {
     }
     public static String getMachine() {
         if (machine == null) {
-            String[] args = new String[]{"gcc", "-dumpmachine"};
+            String[] args = new String[]{CLB_GCC, "-dumpmachine"};
             String[] cmdout = CaptureStreamHandler.run(args);
             if (cmdout.length == 0) {
                 machine = "nomachine";
